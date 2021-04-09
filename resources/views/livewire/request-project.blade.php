@@ -18,7 +18,7 @@
             </div>
             <div class="w-1/2 pl-5">
                 <figure class="">
-                    <img src="/images/DSC_0964.jpg" class="rounded-3xl mb-2">
+                    <img src="/images/DSC_0964.jpg" class="rounded-3xl mb-2 mt-5 shadow-2xl transform rotate-2">
                 </figure>
             </div>
         </div>
