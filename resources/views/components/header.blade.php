@@ -42,14 +42,14 @@
         </nav>
     </header>
     <div class="container mx-auto px-6 md:px-12 relative z-10 flex items-center py-32 xl:py-40">
-        <div class="lg:w-3/5 xl:w-2/5 flex flex-col items-start relative z-10">
-            <span class="font-bold uppercase text-yellow-400">
+        <div class="lg:w-3/5 xl:w-3/5 flex flex-col items-start relative z-10">
+            <span class="font-bold uppercase text-yellow-400 text-4xl">
                 May 22-30, 2021
             </span>
             <h1 class="font-bold text-6xl sm:text-7xl text-white leading-tight mt-4">
                 Loving Central PA
                 <br/>
-                One Neighbor At A Time
+                One Neighbor<br/>At A Time
             </h1>
             <a href="/request"
                class="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-10">
