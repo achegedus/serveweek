@@ -12,7 +12,7 @@
             </div>
             <div class="w-1/2 pl-5">
                 <figure class="">
-                    <img src="/images/IMG_1834.jpg" class="rounded-3xl mb-2">
+                    <img src="/images/IMG_1834.jpg" class="rounded-3xl mb-2 mt-4 shadow-2xl transform rotate-3">
                 </figure>
             </div>
         </div>
@@ -24,7 +24,7 @@
         <div class="flex">
             <div class="w-1/2 pr-5">
                 <figure class="">
-                    <img src="/images/IMG_1886.jpg" class="rounded-3xl mb-2">
+                    <img src="/images/IMG_1886.jpg" class="rounded-3xl mb-2 mt-8 shadow-2xl transform -rotate-2">
                 </figure>
             </div>
 

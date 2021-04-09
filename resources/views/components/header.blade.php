@@ -1,4 +1,4 @@
-<div class="bg-indigo-900 relative overflow-hidden h-screen">
+<div class="bg-indigo-900 relative overflow-hidden h-screen shadow-xl">
     <img src="/images/IMG_2017.jpg" class="absolute h-full w-full object-cover"/>
     <div class="inset-0 bg-black opacity-25 absolute">
     </div>
