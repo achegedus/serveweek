@@ -398,12 +398,15 @@
                                 <label for="notes" class="block text-sm font-medium text-gray-700">
                                     Categories:
                                 </label>
-                                <select multiple id="categories" wire:model="proj.categories()" name="categories" autocomplete="country"
-                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    @foreach($categories as $categories)
-                                        <option value="{{$categories->id}}">{{$categories->name}}</option>
-                                    @endforeach
-                                </select>
+{{--                                <select multiple id="categories" wire:model="proj.categories()" name="categories" autocomplete="country"--}}
+{{--                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">--}}
+{{--                                    @foreach($categories as $categories)--}}
+{{--                                        <option value="{{$categories->id}}">{{$categories->name}}</option>--}}
+{{--                                    @endforeach--}}
+{{--                                </select>--}}
+                                @foreach ($categories as $category)
+                                    <livewire:admin.project-categories :project="$proj" :category="$category" :checked="$selected_categories->contains($category)"></livewire:admin.project-categories>
+                                @endforeach
                             </div>
 
                             <div class="mt-7">
@@ -431,9 +434,21 @@
                             </div>
                         </div>
 
-                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 flex justify-end space-x-5" >
-                            <div class="mt-2 text-sm text-gray-800">
-                                Project Saved.
+                        <div class="px-4 py-3 bg-gray-50 text-right sm:px-6 flex justify-end items-center space-x-5" >
+                            <div>
+                                @if (session()->has('notify-saved'))
+                                    <span
+                                        class="text-sm text-gray-800"
+                                        x-data="{open: true}"
+                                        x-init="
+                                            setTimeout(() => { open = false }, 2500);
+                                            setTimeout(() => { $refs.this.remove() }, 3500);
+                                        "
+                                        x-ref="this"
+                                        x-show.transition.duration.1000ms="open">
+                                        Project Saved.
+                                    </span>
+                                @endif
                             </div>
                             <button type="submit"
                                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

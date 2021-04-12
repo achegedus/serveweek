@@ -46,13 +46,13 @@ class ProjectDetails extends Component
         'proj.coordinator_id' => 'sometimes',
         'proj.evaluator_id' => 'sometimes',
         'selected_categories' => 'sometimes',
-        'proj.categories' => 'sometimes',
+//        'proj.categories' => 'sometimes',
     ];
 
     public function mount(Project $project)
     {
         $this->proj = $project;
-//        $this->selected_categories = $this
+        $this->selected_categories = $this->proj->categories()->get();
     }
 
     public function saveProject()
@@ -61,6 +61,8 @@ class ProjectDetails extends Component
 //        $this->proj->categories = implode(',', $this->selected_categories);
         $this->proj->save();
         // save categories
+
+        session()->flash('notify-saved');
     }
 
     public function render()
@@ -70,7 +72,7 @@ class ProjectDetails extends Component
             'project_dates' => ProjectDate::orderBy('project_date', 'asc')->get(),
             'regions' => Region::all(),
             'users' => User::all(),
-            'categories' => Category::all(),
+            'categories' => Category::orderBy('name', 'asc')->get(),
         ]);
     }
 }
