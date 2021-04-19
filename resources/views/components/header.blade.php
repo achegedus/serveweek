@@ -35,10 +35,10 @@
                     </div>
                 </div>
                 <div class="hidden md:flex items-center">
-                    <a href="#about" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
+                    <a href="/#about" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
                         About ServeWeek
                     </a>
-                    <a href="#details" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
+                    <a href="/#details" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
                         Details
                     </a>
 {{--                    <a href="/volunteer" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">--}}
