@@ -1,5 +1,12 @@
-<div class="bg-indigo-900 relative overflow-hidden h-screen shadow-xl">
-    <img src="/images/IMG_2017.jpg" class="absolute h-full w-full object-cover"/>
+<div class="bg-indigo-900 relative overflow-hidden shadow-xl">
+    @if (Request::is('/'))
+        <img src="/images/IMG_2017.jpg" class="absolute w-full object-cover "/>
+    @elseif (Request::is('volunteer'))
+        <img src="/images/IMG_1850.jpg" class="absolute w-full object-cover "/> 
+    @elseif (Request::is('request'))
+        <img src="/images/IMG_1834.jpg" class="absolute w-full object-cover "/>
+    @endif
+    
     <div class="inset-0 bg-black opacity-25 absolute">
     </div>
     <header class="absolute top-0 left-0 right-0 z-20">
