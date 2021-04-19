@@ -1,6 +1,6 @@
 <div class="container mx-auto mt-5">
     <p class="text-2xl font-bold px-12 mb-10">PROJECT: {{ $proj->formattedID() }}</p>
-    <form wire:submit.prevent="saveProject">
+    <form wire:submit.prevent="saveProject" wire:key="projectDetailsForm">
         <div class="px-6 md:px-12 mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
@@ -139,7 +139,7 @@
                                             class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option>Select one...</option>
                                         @foreach($regions as $region)
-                                            <option value="{{$region->id}}">{{$region->name}}</option>
+                                            <option wire:key="{{ $loop->index }}" value="{{$region->id}}">{{$region->name}}</option>
                                         @endforeach
                                     </select>
                                     @error('proj.region_id') <div class="mt-1 text-red-500 text-sm">{{ $message }}</div> @enderror
@@ -220,7 +220,7 @@
                                             class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option>Select one...</option>
                                         @foreach($project_dates as $project_date)
-                                            <option value="{{$project_date->id}}">{{$project_date->formattedDate()}}</option>
+                                            <option wire:key="{{ $loop->index }}" value="{{$project_date->id}}">{{$project_date->formattedDate()}}</option>
                                         @endforeach
                                     </select>
                                     @error('proj.project_date_id') <div class="mt-1 text-red-500 text-sm">{{ $message }}</div> @enderror
@@ -446,7 +446,6 @@
                 </div>
             </div>
         </div>
-
     </form>
 
 
@@ -473,11 +472,10 @@
                         <div class="p-4 pt-0 bg-white">
                             <div class="grid grid-cols-3">
                                 @foreach ($categories as $category)
-                                    <livewire:admin.project-categories :project="$proj" :category="$category" :checked="$selected_categories->contains($category)"></livewire:admin.project-categories>
+                                    <livewire:admin.project-categories :key="$loop->index" :project="$proj" :category="$category" :checked="$selected_categories->contains($category)"></livewire:admin.project-categories>
                                 @endforeach
                             </div>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -487,58 +485,58 @@
 
 
 
-        <div class="hidden sm:block" aria-hidden="true">
-            <div class="px-6 md:px-12 py-5">
-                <div class="border-t border-gray-200"></div>
-            </div>
+    <div class="hidden sm:block" aria-hidden="true">
+        <div class="px-6 md:px-12 py-5">
+            <div class="border-t border-gray-200"></div>
         </div>
+    </div>
 
-        <div class="px-6 md:px-12 mt-10 sm:mt-0">
-            <div class="md:grid md:grid-cols-3 md:gap-6">
-                <div class="md:col-span-1">
-                    <div class="px-4 sm:px-0">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Project Volunteers</h3>
-                        <p class="mt-1 text-sm text-gray-600">
-                            People who have signed up for this project.
-                        </p>
-                    </div>
-                </div>
-                <div class="mt-5 md:mt-0 md:col-span-2">
-                    <div class="shadow overflow-hidden sm:rounded-md">
-                        <div >
-                            <x-table.table>
-                                <x-slot name="head">
-                                    <x-table.header>Name</x-table.header>
-                                    <x-table.header>Phone</x-table.header>
-                                    <x-table.header>Email</x-table.header>
-                                    <x-table.header>Number</x-table.header>
-                                </x-slot>
-
-                                <x-slot name="body">
-                                    @forelse ($proj->volunteers as $vol)
-                                        <x-table.row>
-                                            <x-table.cell>{{ $vol->name }}</x-table.cell>
-                                            <x-table.cell>{{ $vol->email }}</x-table.cell>
-                                            <x-table.cell>{{ $vol->phone }}</x-table.cell>
-                                            <x-table.cell>{{ $vol->numberOfVolunteers }}</x-table.cell>
-                                        </x-table.row>
-                                    @empty
-                                        <x-table.row>
-                                            <x-table.cell colspan="4">
-                                                <div class="flex justify-center items-center space-x-2">
-                                                    <span class="font-medium py-8 text-cool-gray-400 text-xl">No volunteers yet...</span>
-                                                </div>
-                                            </x-table.cell>
-                                        </x-table.row>
-                                    @endforelse
-                                </x-slot>
-                            </x-table.table>
-
-                        </div>
-                    </div>
+    <div class="px-6 md:px-12 mt-10 sm:mt-0">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Project Volunteers</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        People who have signed up for this project.
+                    </p>
                 </div>
             </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <div class="shadow overflow-hidden sm:rounded-md">
+                    <div >
+                        <x-table.table>
+                            <x-slot name="head">
+                                <x-table.header>Name</x-table.header>
+                                <x-table.header>Phone</x-table.header>
+                                <x-table.header>Email</x-table.header>
+                                <x-table.header>Number</x-table.header>
+                            </x-slot>
+
+                            <x-slot name="body">
+                                @forelse ($proj->volunteers as $vol)
+                                    <x-table.row>
+                                        <x-table.cell>{{ $vol->name }}</x-table.cell>
+                                        <x-table.cell>{{ $vol->email }}</x-table.cell>
+                                        <x-table.cell>{{ $vol->phone }}</x-table.cell>
+                                        <x-table.cell>{{ $vol->numberOfVolunteers }}</x-table.cell>
+                                    </x-table.row>
+                                @empty
+                                    <x-table.row>
+                                        <x-table.cell colspan="4">
+                                            <div class="flex justify-center items-center space-x-2">
+                                                <span class="font-medium py-8 text-cool-gray-400 text-xl">No volunteers yet...</span>
+                                            </div>
+                                        </x-table.cell>
+                                    </x-table.row>
+                                @endforelse
+                            </x-slot>
+                        </x-table.table>
+
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
 
     <div class="h-48"></div>
 </div>
