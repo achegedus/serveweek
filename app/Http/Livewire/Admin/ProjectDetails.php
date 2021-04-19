@@ -58,9 +58,7 @@ class ProjectDetails extends Component
     public function saveProject()
     {
         $this->validate();
-//        $this->proj->categories = implode(',', $this->selected_categories);
         $this->proj->save();
-        // save categories
 
         session()->flash('notify-saved');
     }

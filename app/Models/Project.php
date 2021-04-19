@@ -24,6 +24,11 @@ class Project extends Model
         return $this->belongsToMany(Category::class);
     }
 
+    public function volunteers()
+    {
+        return $this->hasMany(Volunteer::class);
+    }
+
     public function workdate()
     {
         return $this->belongsTo(ProjectDate::class, 'project_date_id', 'id');
@@ -46,5 +51,73 @@ class Project extends Model
             return 'CONFIRMED';
         else if ($this->is_confirmed)
             return 'CONFIRMED';
+    }
+
+    public function truncated_address($limit, $break=" ", $pad="...")
+    {
+        $string = $this->location_address;
+
+        // return with no change if string is shorter than $limit
+        if(strlen($string) <= $limit) return $string;
+
+        // is $break present between $limit and the end of the string?
+        if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+            if($breakpoint < strlen($string) - 1) {
+                $string = substr($string, 0, $breakpoint) . $pad;
+            }
+        }
+
+        return $string;
+    }
+
+    public function truncated_description($limit, $break=".", $pad="...")
+    {
+        $string = $this->project_description;
+
+        // return with no change if string is shorter than $limit
+        if(strlen($string) <= $limit) return $string;
+
+        // is $break present between $limit and the end of the string?
+        if(false !== ($breakpoint = strpos($string, $break, $limit))) {
+            if($breakpoint < strlen($string) - 1) {
+                $string = substr($string, 0, $breakpoint) . $pad;
+            }
+        }
+
+        return $string;
+    }
+
+    public function category_list()
+    {
+        $output = '';
+
+        foreach ($this->categories as $category) {
+            $output = $output . ', ' . $category->name;
+        }
+
+        $output = substr($output, 2);
+        return $output;
+    }
+
+    public function updateVolunteerCount()
+    {
+        $count = 0;
+        foreach ($this->volunteers as $vol) {
+            $count = $count + $vol->numberOfVolunteers;
+        }
+        $this->registeredVolunteers = $count;
+
+        if ($this->registeredVolunteers >= $this->numberOfVolunteers) {
+            $this->isFilled = true;
+        }
+        $this->save();
+    }
+
+    public function availableSlots()
+    {
+        if ($this->volunteers_needed <= $this->registeredVolunteers)
+            return 'Project filled.';
+        else
+            return $this->volunteers_needed - $this->registeredVolunteers . ' of ' . $this->volunteers_needed;
     }
 }

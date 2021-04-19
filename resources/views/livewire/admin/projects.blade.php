@@ -27,11 +27,11 @@
                                 @forelse ($projects as $project)
                                     <x-table.row>
                                         <x-table.cell>{{ $project->formattedID() }}</x-table.cell>
-                                        <x-table.cell>{{ $project->location_address }}</x-table.cell>
+                                        <x-table.cell>{{ $project->truncated_address(25) }}</x-table.cell>
                                         <x-table.cell>{{ $project->status() }}</x-table.cell>
                                         <x-table.cell>{{ $project->workdate->formattedDate() }}</x-table.cell>
                                         <x-table.cell>{{ $project->project_time }}</x-table.cell>
-                                        <x-table.cell>{{ $project->volunteers_needed }}</x-table.cell>
+                                        <x-table.cell class="font-bold {{ $project->isFilled === 1 ? 'text-green-600' : 'text-red-800' }}">{{ $project->registeredVolunteers }} of {{ $project->volunteers_needed }}</x-table.cell>
                                         <x-table.cell><a href="/admin/projects/{{$project->id}}">Edit</a></x-table.cell>
                                         <x-table.cell>
                                             <x-button.link wire:click="delete_id({{ $project->id }})">Delete</x-button.link>

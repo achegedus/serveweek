@@ -1,6 +1,6 @@
 <div class="container mx-auto mt-5">
     <p class="text-2xl font-bold px-12 mb-10">PROJECT: {{ $proj->formattedID() }}</p>
-    <form wire:submit.prevent="saveProject" action="#" method="POST">
+    <form wire:submit.prevent="saveProject">
         <div class="px-6 md:px-12 mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
@@ -256,7 +256,7 @@
                                 </div>
 
                                 <div class="col-span-6 sm:col-span-3">
-                                    <label for="volunteers_needed" class="block text-sm font-medium text-gray-700"># of Volunteers needed</label>
+                                    <label for="volunteers_needed" class="block text-sm font-medium text-gray-700"># of Volunteers needed @if($proj->isFilled) <span class="text-green-500 font-bold"> - FILLED</span> @else <span class="text-red-600 font-bold"> - {{$proj->registeredVolunteers}} Registered</span>  @endif</label>
                                     <input type="text" wire:model="proj.volunteers_needed" name="volunteers_needed" id="volunteers_needed" autocomplete="email"
                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                     @error('proj.volunteers_needed') <div class="mt-1 text-red-500 text-sm">{{ $message }}</div> @enderror
@@ -394,20 +394,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-7">
-                                <label for="notes" class="block text-sm font-medium text-gray-700">
-                                    Categories:
-                                </label>
-{{--                                <select multiple id="categories" wire:model="proj.categories()" name="categories" autocomplete="country"--}}
-{{--                                        class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">--}}
-{{--                                    @foreach($categories as $categories)--}}
-{{--                                        <option value="{{$categories->id}}">{{$categories->name}}</option>--}}
-{{--                                    @endforeach--}}
-{{--                                </select>--}}
-                                @foreach ($categories as $category)
-                                    <livewire:admin.project-categories :project="$proj" :category="$category" :checked="$selected_categories->contains($category)"></livewire:admin.project-categories>
-                                @endforeach
-                            </div>
+
 
                             <div class="mt-7">
                                 <label for="notes" class="block text-sm font-medium text-gray-700">
@@ -452,14 +439,106 @@
                             </div>
                             <button type="submit"
                                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Submit Project
+                                Save Project
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
     </form>
+
+
+
+    <div class="hidden sm:block" aria-hidden="true">
+        <div class="px-6 md:px-12 py-5">
+            <div class="border-t border-gray-200"></div>
+        </div>
+    </div>
+
+    <div class="px-6 md:px-12 mt-10 sm:mt-0">
+        <div class="md:grid md:grid-cols-3 md:gap-6">
+            <div class="md:col-span-1">
+                <div class="px-4 sm:px-0">
+                    <h3 class="text-lg font-medium leading-6 text-gray-900">Project Categories</h3>
+                    <p class="mt-1 text-sm text-gray-600">
+                        Used for searching for projects.  Select all that match.
+                    </p>
+                </div>
+            </div>
+            <div class="mt-5 md:mt-0 md:col-span-2">
+                <div class="shadow overflow-hidden sm:rounded-md">
+                    <div >
+                        <div class="p-4 pt-0 bg-white">
+                            <div class="grid grid-cols-3">
+                                @foreach ($categories as $category)
+                                    <livewire:admin.project-categories :project="$proj" :category="$category" :checked="$selected_categories->contains($category)"></livewire:admin.project-categories>
+                                @endforeach
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+        <div class="hidden sm:block" aria-hidden="true">
+            <div class="px-6 md:px-12 py-5">
+                <div class="border-t border-gray-200"></div>
+            </div>
+        </div>
+
+        <div class="px-6 md:px-12 mt-10 sm:mt-0">
+            <div class="md:grid md:grid-cols-3 md:gap-6">
+                <div class="md:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Project Volunteers</h3>
+                        <p class="mt-1 text-sm text-gray-600">
+                            People who have signed up for this project.
+                        </p>
+                    </div>
+                </div>
+                <div class="mt-5 md:mt-0 md:col-span-2">
+                    <div class="shadow overflow-hidden sm:rounded-md">
+                        <div >
+                            <x-table.table>
+                                <x-slot name="head">
+                                    <x-table.header>Name</x-table.header>
+                                    <x-table.header>Phone</x-table.header>
+                                    <x-table.header>Email</x-table.header>
+                                    <x-table.header>Number</x-table.header>
+                                </x-slot>
+
+                                <x-slot name="body">
+                                    @forelse ($proj->volunteers as $vol)
+                                        <x-table.row>
+                                            <x-table.cell>{{ $vol->name }}</x-table.cell>
+                                            <x-table.cell>{{ $vol->email }}</x-table.cell>
+                                            <x-table.cell>{{ $vol->phone }}</x-table.cell>
+                                            <x-table.cell>{{ $vol->numberOfVolunteers }}</x-table.cell>
+                                        </x-table.row>
+                                    @empty
+                                        <x-table.row>
+                                            <x-table.cell colspan="4">
+                                                <div class="flex justify-center items-center space-x-2">
+                                                    <span class="font-medium py-8 text-cool-gray-400 text-xl">No volunteers yet...</span>
+                                                </div>
+                                            </x-table.cell>
+                                        </x-table.row>
+                                    @endforelse
+                                </x-slot>
+                            </x-table.table>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
     <div class="h-48"></div>
 </div>

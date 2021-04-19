@@ -18,10 +18,13 @@ use App\Models\Project;
 Route::get('/', function () {
     return view('welcome');
 });
-
 Route::get('/request', \App\Http\Livewire\RequestProject::class);
 
+Route::get('/volunteer', \App\Http\Livewire\ProjectList::class);
 
+Route::get('/volunteer/project/{project}', \App\Http\Livewire\ProjectVolunteer::class);
+
+# admin site
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/dashboard', function () {
         return view('dashboard');

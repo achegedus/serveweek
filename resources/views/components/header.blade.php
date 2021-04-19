@@ -34,9 +34,9 @@
                     <a href="#details" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
                         Details
                     </a>
-                    <a href="/volunteer" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
-                        Volunteer
-                    </a>
+{{--                    <a href="/volunteer" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">--}}
+{{--                        Volunteer--}}
+{{--                    </a>--}}
                 </div>
             </div>
         </nav>
