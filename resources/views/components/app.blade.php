@@ -22,7 +22,7 @@
         <x-jet-banner />
 
         <div class="min-h-screen bg-gray-100">
-            <x-header></x-header>
+            @livewire('header')
 
             <!-- Page Content -->
             <main>

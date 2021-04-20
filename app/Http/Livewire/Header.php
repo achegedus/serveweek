@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\Dashboard;
+namespace App\Http\Livewire;
 
-use Livewire\Component;
 use App\Models\Setting;
+use Livewire\Component;
 
-class Settings extends Component
+class Header extends Component
 {
     public Setting $volunteerSetting;
     public Setting $submitSetting;
@@ -23,20 +23,8 @@ class Settings extends Component
         $this->showVolunteer = $this->volunteerSetting->getBoolean();
     }
 
-    public function updateVolunteerSetting()
-    {
-        $this->volunteerSetting->setBoolean($this->showVolunteer);
-        $this->volunteerSetting->save();
-    }
-
-    public function updateSubmitSetting()
-    {
-        $this->submitSetting->setBoolean($this->showSubmit);
-        $this->submitSetting->save();
-    }
-
     public function render()
     {
-        return view('livewire.dashboard.settings');
+        return view('livewire.header');
     }
 }

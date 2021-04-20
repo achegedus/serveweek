@@ -21,7 +21,7 @@
                 <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                 </div>
                 <!-- label -->
-                <div class="ml-3 text-gray-700 font-medium">Turn on submit projects</div>
+                <div class="ml-3 text-gray-700 font-medium">Turn on submit projects - <a href="/request" class="underline text-purple-700">LINK</a></div>
             </label>
 
         </div>
@@ -39,7 +39,7 @@
                 <div class="dot absolute left-1 top-1 bg-white w-6 h-6 rounded-full transition"></div>
                 </div>
                 <!-- label -->
-                <div class="ml-3 text-gray-700 font-medium">Turn on volunteer for projects</div>
+                <div class="ml-3 text-gray-700 font-medium">Turn on volunteer for projects - <a href="/volunteer" class="underline text-purple-700">LINK</a></div>
             </label>
 
         </div>

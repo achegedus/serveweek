@@ -2,11 +2,11 @@
     @if (Request::is('/'))
         <img src="/images/IMG_2017.jpg" class="absolute w-full object-cover "/>
     @elseif (Request::is('volunteer'))
-        <img src="/images/IMG_1850.jpg" class="absolute w-full object-cover "/> 
+        <img src="/images/IMG_1850.jpg" class="absolute w-full object-cover "/>
     @elseif (Request::is('request'))
         <img src="/images/IMG_1834.jpg" class="absolute w-full object-cover "/>
     @endif
-    
+
     <div class="inset-0 bg-black opacity-25 absolute">
     </div>
     <header class="absolute top-0 left-0 right-0 z-20">
@@ -41,9 +41,17 @@
                     <a href="/#details" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
                         Details
                     </a>
-{{--                    <a href="/volunteer" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">--}}
-{{--                        Volunteer--}}
-{{--                    </a>--}}
+                    @if ($showVolunteer)
+                        <a href="/volunteer" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
+                            Volunteer
+                        </a>
+                    @endif
+
+                    @if ($showSubmit)
+                        <a href="/request" class="text-lg uppercase mx-3 text-white cursor-pointer hover:text-gray-300">
+                            Request a Project
+                        </a>
+                    @endif
                 </div>
             </div>
         </nav>
@@ -58,10 +66,19 @@
                 <br/>
                 One Neighbor<br/>At A Time
             </h1>
+            @if ($showSubmit)
             <a href="/request"
                class="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-10">
                 Request a Project
             </a>
+            @endif
+
+            @if ($showVolunteer)
+                <a href="/volunteer"
+                   class="block bg-white hover:bg-gray-100 py-3 px-4 rounded-lg text-lg text-gray-800 font-bold uppercase mt-10">
+                    Volunteer
+                </a>
+            @endif
         </div>
     </div>
 </div>
