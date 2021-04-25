@@ -101,13 +101,14 @@ class Project extends Model
 
     public function updateVolunteerCount()
     {
+        $this->isFilled = false;
         $count = 0;
         foreach ($this->volunteers as $vol) {
             $count = $count + $vol->numberOfVolunteers;
         }
         $this->registeredVolunteers = $count;
 
-        if ($this->registeredVolunteers >= $this->numberOfVolunteers) {
+        if ($this->registeredVolunteers >= $this->volunteers_needed) {
             $this->isFilled = true;
         }
         $this->save();

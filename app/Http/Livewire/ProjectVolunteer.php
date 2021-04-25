@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\ProjectVolunteerSignup;
 use App\Models\Project;
 use App\Models\Volunteer;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\URL;
 use Livewire\Component;
 
@@ -43,6 +45,8 @@ class ProjectVolunteer extends Component
         $this->project->volunteers()->save($this->newvol);
         $this->project->updateVolunteerCount();
         $this->showThankYou = true;
+
+        Mail::to($this->newvol->email)->send(new ProjectVolunteerSignup($this->project));
     }
 
     public function render()
