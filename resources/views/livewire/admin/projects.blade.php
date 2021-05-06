@@ -18,6 +18,7 @@
                                 <x-table.header>Status</x-table.header>
                                 <x-table.header>Date</x-table.header>
                                 <x-table.header>Time</x-table.header>
+                                <x-table.header>Requester</x-table.header>
                                 <x-table.header># Vols</x-table.header>
                                 <x-table.header></x-table.header>
                                 <x-table.header></x-table.header>
@@ -31,6 +32,7 @@
                                         <x-table.cell>{{ $project->status() }}</x-table.cell>
                                         <x-table.cell>{{ $project->workdate->formattedDate() }}</x-table.cell>
                                         <x-table.cell>{{ $project->project_time }}</x-table.cell>
+                                        <x-table.cell>{{ $project->requester_name }}</x-table.cell>
                                         <x-table.cell class="font-bold {{ $project->isFilled === 1 ? 'text-green-600' : 'text-red-800' }}">{{ $project->registeredVolunteers }} of {{ $project->volunteers_needed }}</x-table.cell>
                                         <x-table.cell><a href="/admin/projects/{{$project->id}}">Edit</a></x-table.cell>
                                         <x-table.cell>

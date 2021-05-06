@@ -15,6 +15,14 @@ class ProjectListContent extends Component
 
     protected $listeners = ['updateFilters'];
 
+    public $region;
+    public $category;
+
+    protected $queryString = [
+        'region',
+        'category'
+    ];
+
     public function mount()
     {
 //        $this->projects = Project::all();
@@ -34,13 +42,13 @@ class ProjectListContent extends Component
     {
         $projects = Project::where('isFilled', '=', '0')->where('is_approved','=','1');
 
-        if (count($this->filterRegions) > 0) {
-            $projects->whereIn('region_id', $this->filterRegions);
+        if ($this->region) {
+            $projects->where('region_id', $this->region);
         }
 
-        if (count($this->filterCategories) > 0) {
+        if ($this->category) {
             $projects->whereHas('categories', function(Builder $q) {
-                $q->whereIn('category_project.category_id', $this->filterCategories);
+                $q->where('category_project.category_id', $this->category);
             });
         }
 

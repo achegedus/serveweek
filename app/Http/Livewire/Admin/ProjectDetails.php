@@ -60,6 +60,7 @@ class ProjectDetails extends Component
         $this->validate();
         $this->proj->save();
 
+        $this->proj->updateVolunteerCount();
         session()->flash('notify-saved');
     }
 

@@ -9,7 +9,7 @@ class Volunteer extends Model
 {
     use HasFactory;
 
-    public function projects()
+    public function project()
     {
         return $this->belongsTo(Project::class);
     }

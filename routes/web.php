@@ -40,6 +40,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('/admin/projects', \App\Http\Livewire\Admin\Projects::class)->name('admin.projects');
 
+    Route::get('/admin/volunteers', \App\Http\Livewire\Admin\Volunteers::class)->name('admin.volunteers');
+
     Route::get('/admin/projects/{project}', \App\Http\Livewire\Admin\ProjectDetails::class)->name('admin.project_details');
 });
 
