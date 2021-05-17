@@ -1,6 +1,5 @@
 <?php
 
-use PDF;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ProjectRegistered;
 use App\Models\Project;
@@ -57,7 +56,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         }
         view()->share('evaluator', $evaluator);
 
-        $pdf = PDF::loadView('admin.project_sheet', [$proj, $evaluator]);
+        $pdf = Barryvdh\DomPDF\Facade::loadView('admin.project_sheet', [$proj, $evaluator]);
 //        return $pdf->download('test.pdf');
         return $pdf->stream();
     });
