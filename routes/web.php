@@ -46,17 +46,18 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/projects/{project}', \App\Http\Livewire\Admin\ProjectDetails::class)->name('admin.project_details');
 
     Route::get('/admin/projects/sheet/{project}', function(Project $project) {
-        $proj = Project::find($project->id)->first();
-        view()->share('project', $proj);
-
+        
+        // $proj = Project::find($project->id)->first();
+        view()->share('project', $project);
+        // dd($proj);
         $evaluator = "None";
         if ($project->evaluator_id) {
-            $eval = User::find($project->evaluator_id)->first();
+            $eval = User::where('id', '=', $project->evaluator_id)->first();
             $evaluator = $eval->name;
         }
         view()->share('evaluator', $evaluator);
 
-        $pdf = Barryvdh\DomPDF\Facade::loadView('admin.project_sheet', [$proj, $evaluator]);
+        $pdf = Barryvdh\DomPDF\Facade::loadView('admin.project_sheet', [$project, $evaluator]);
 //        return $pdf->download('test.pdf');
         return $pdf->stream();
     });
