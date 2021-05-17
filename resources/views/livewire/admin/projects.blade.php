@@ -22,6 +22,7 @@
                                 <x-table.header># Vols</x-table.header>
                                 <x-table.header></x-table.header>
                                 <x-table.header></x-table.header>
+                                <x-table.header></x-table.header>
                             </x-slot>
 
                             <x-slot name="body">
@@ -38,6 +39,7 @@
                                         <x-table.cell>
                                             <x-button.link wire:click="delete_id({{ $project->id }})">Delete</x-button.link>
                                         </x-table.cell>
+                                        <x-table.cell><a href="/admin/projects/sheet/{{$project->id}}">Sheet</a></x-table.cell>
                                     </x-table.row>
                                 @empty
                                     <x-table.row>

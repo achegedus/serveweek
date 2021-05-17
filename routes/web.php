@@ -1,8 +1,10 @@
 <?php
 
+use PDF;
 use Illuminate\Support\Facades\Route;
 use App\Mail\ProjectRegistered;
 use App\Models\Project;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +45,22 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/admin/volunteers', \App\Http\Livewire\Admin\Volunteers::class)->name('admin.volunteers');
 
     Route::get('/admin/projects/{project}', \App\Http\Livewire\Admin\ProjectDetails::class)->name('admin.project_details');
+
+    Route::get('/admin/projects/sheet/{project}', function(Project $project) {
+        $proj = Project::find($project->id)->first();
+        view()->share('project', $proj);
+
+        $evaluator = "None";
+        if ($project->evaluator_id) {
+            $eval = User::find($project->evaluator_id)->first();
+            $evaluator = $eval->name;
+        }
+        view()->share('evaluator', $evaluator);
+
+        $pdf = PDF::loadView('admin.project_sheet', [$proj, $evaluator]);
+//        return $pdf->download('test.pdf');
+        return $pdf->stream();
+    });
 });
 
 Route::get('/testmail', function () {
