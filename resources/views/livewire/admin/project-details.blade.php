@@ -1,5 +1,8 @@
 <div class="container mx-auto mt-5">
-    <p class="text-2xl font-bold px-12 mb-10">PROJECT: {{ $proj->formattedID() }}</p>
+    <div class="flex justify-between">
+        <div class="text-2xl font-bold px-12 mb-10">PROJECT: {{ $proj->formattedID() }}</div>
+        <div class="mr-12"><a class="text-sm rounded-md p-2 text-white bg-indigo-600 hover:bg-indigo-500 active:bg-indigo-700 border-indigo-600" href="/admin/projects/sheet/{{$proj->id}}">Project Sheet</a></div>
+    </div>
     <form wire:submit.prevent="saveProject" wire:key="projectDetailsForm">
         <div class="px-6 md:px-12 mt-10 sm:mt-0">
             <div class="md:grid md:grid-cols-3 md:gap-6">
