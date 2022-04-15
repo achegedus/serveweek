@@ -36,7 +36,9 @@ class Project extends Model
 
     public function formattedID()
     {
-        return '2021-' . str_pad( $this->id,3,"0",STR_PAD_LEFT);
+        // get current year
+        $currentyear = date("Y");
+        return $currentyear . '-' . str_pad( $this->id,3,"0",STR_PAD_LEFT);
     }
 
     public function status()
