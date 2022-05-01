@@ -43,13 +43,18 @@
                     </tr>
 
                     <tr>
-                        <th class="text-right" valign="top">Skills Requested: </Req>:</th>
+                        <th class="text-right" valign="top">Skills Requested: </Req></th>
                         <td>{{$project->skills_requested}}</td>
                     </tr>
 
                     <tr>
-                        <th class="text-right" valign="top">Materials Provided: </Req>:</th>
+                        <th class="text-right" valign="top">Materials Provided: </Req></th>
                         <td>{{$project->materials_provided}}</td>
+                    </tr>
+
+                    <tr>
+                        <th class="text-right" valign="top">Materials Not Provided: </Req></th>
+                        <td>{{$project->materials_not_provided}}</td>
                     </tr>
 
                 </table>

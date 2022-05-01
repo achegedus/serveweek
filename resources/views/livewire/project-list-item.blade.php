@@ -7,7 +7,7 @@
         <p class="mb-2 mt-1 font-bold text-sm">{{$project->workdate->formattedDate()}}, {{$project->project_time}}</p>
         <p class="text-sm"><b>Categories:</b> {{ $project->category_list() }}</p>
         <p class="text-sm"><b>Region:</b> {{$project->region->name}}</p>
-        <p class="text-sm"><b>Volunteers Registered:</b> {{$project->registeredVolunteers}} out of {{$project->volunteers_needed}}</p>
+        <p class="text-sm"><b>Volunteers Needed:</b> {{$project->availableSlots()}}</p>
 
         <p class="mt-2">{{$project->truncated_description(150)}}</p>
     </div>
