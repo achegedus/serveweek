@@ -259,13 +259,14 @@
 
                                 <div class="col-span-6 sm:col-span-3">
                                     <label for="project_time" class="block text-sm font-medium text-gray-700">Preferred
-                                        Time</label>
+                                        Time (weekday projects can be evenings only)</label>
                                     <select id="project_time" wire:model="proj.project_time" name="project_time" autocomplete="country"
                                             class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option>Select one...</option>
                                         <option>Morning</option>
                                         <option>Afternoon</option>
                                         <option>Evening</option>
+                                        <option>Flexible</option>
                                     </select>
                                     @error('proj.project_time') <div class="mt-1 text-red-500 text-sm">{{ $message }}</div> @enderror
                                 </div>
