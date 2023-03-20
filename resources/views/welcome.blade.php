@@ -7,8 +7,8 @@
         <div class="flex">
             <div class="font-normal text-xl w-1/2">
                 <p class="mb-4">ServeWeek is a partnership of several local churches to bless our local community. It’s an opportunity for the Church to demonstrate living proof of a loving God through acts of kindness! We typically complete over 100 projects with nearly 1000 volunteers. A variety of projects are requested - painting, yard work, cleaning and organizing, home repair/construction, roofing, hosting events, visiting local nursing homes, baking and more. There is a project for everyone!</p>
-                <p class="mb-4">Projects can be requested from April 1 - 18, 2022.</p>
-                <p class="">Volunteers can register for projects from April 17 - May 8, 2022! Register as an individual or a group! Please note the start time on each project. We estimate that projects will last 3 - 4 hours.</p>
+                <p class="mb-4">Projects can be requested from March 20 - April 17, 2023.</p>
+                <p class="">Volunteers can register for projects from April 14 - May 8, 2023! Register as an individual or a group! Please note the start time on each project. We estimate that projects will last 3 - 4 hours.</p>
             </div>
             <div class="w-1/2 pl-5">
                 <figure class="">
